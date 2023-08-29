@@ -1,55 +1,82 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Registro() {
   const [nombreDeUsuario, setNombreDeUsuario] = useState("");
   const [contraseña, setContraseña] = useState("");
   const [confirmarContraseña, setConfirmarContraseña] = useState("");
-
-  const handleEnviar = () => {
+  const [registroExitoso, setRegistroExitoso] = useState(false);
+  const navigate = useNavigate();
+  const handleEnviar = (e) => {
+    e.preventDefault();
+    
     if (contraseña !== confirmarContraseña) {
       alert("Las contraseñas no coinciden");
       return;
     }
 
+    if (contraseña.length < 6) {
+      alert("La contraseña debe tener al menos 6 caracteres");
+      return;
+    }
+
+    // Aquí puedes realizar la lógica de registro si todas las validaciones pasan
+    alert("Registro exitoso");
+    setRegistroExitoso(true);
+    navigate("/");
   };
 
   return (
-    <form onSubmit={handleEnviar}>
-      <div>
-        <label for="nombreDeUsuario"></label>
-        <input
-          type="text"
-          id="nombreDeUsuario"
-          placeholder="Nombre de usuario"
-          value={nombreDeUsuario}
-          onChange={(e) => setNombreDeUsuario(e.target.value)}
-        />
-      </div>
-      <br />
-      <div>
-        <label for="contraseña"></label>
-        <input
-          type="password"
-          id="contraseña"
-          placeholder="Contraseña"
-          value={contraseña}
-          onChange={(e) => setContraseña(e.target.value)}
-        />
-      </div>
-      <br />
-      <div>
-        <label for="confirmarContraseña"></label>
-        <input
-          type="password"
-          id="confirmarContraseña"
-          placeholder="Confirmar contraseña"
-          value={confirmarContraseña}
-          onChange={(e) => setConfirmarContraseña(e.target.value)}
-        />
-      </div>
-      <br />
-      <button type="submit" className="btn btn-primary">Registrarse</button>
-    </form>
+    <div>
+      {registroExitoso ? (
+        <div>
+          <p>¡Registro exitoso para {nombreDeUsuario}!</p>
+          <p>Ahora puedes utilizar los datos en otras partes del programa.</p>
+        </div>
+      ) : (
+        <form onSubmit={handleEnviar}>
+          <div>
+            <label htmlFor="nombreDeUsuario">Nombre de usuario:</label>
+            <input
+              type="text"
+              id="nombreDeUsuario"
+              placeholder="Nombre de usuario"
+              value={nombreDeUsuario}
+              onChange={(e) => setNombreDeUsuario(e.target.value)}
+              required
+            />
+          </div>
+          <br />
+          <div>
+            <label htmlFor="contraseña">Contraseña:</label>
+            <input
+              type="password"
+              id="contraseña"
+              placeholder="Contraseña"
+              value={contraseña}
+              onChange={(e) => setContraseña(e.target.value)}
+              required
+            />
+          </div>
+          <br />
+          <div>
+            <label htmlFor="confirmarContraseña">Confirmar contraseña:</label>
+            <input
+              type="password"
+              id="confirmarContraseña"
+              placeholder="Confirmar contraseña"
+              value={confirmarContraseña}
+              onChange={(e) => setConfirmarContraseña(e.target.value)}
+              required
+            />
+          </div>
+          <br />
+          <button type="submit" className="btn btn-primary">
+            Registrarse
+          </button>
+        </form>
+      )}
+    </div>
   );
 }
 
