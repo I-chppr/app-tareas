@@ -1,9 +1,10 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Layout from "./pags/Layout";
-import Inicio from "./pags/inicio";
-import Login from "./pags/login";
-import Registro from "./pags/registro";
+import Layout from "./componentes/Layout";
+import Inicio from "./componentes/inicio";
+import Login from "./componentes/login";
+import Registro from "./componentes/registro";
+import React, { useState } from "react";
 
 function App() {
   return (
