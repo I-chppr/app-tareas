@@ -6,20 +6,18 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // ...Aqui verificamos si el usuario inició sesión correctamente
-
-    // Si el usuario inició sesión correctamente, lo redirigimos a la página dashboard
     navigate("/");
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" placeholder="Usuario" />
-      <input type="password" placeholder="Contraseña" />
-      <button type="submit">Iniciar sesión</button>
+      <input type="text" placeholder="Usuario" /> <br/>
+      <input type="password" placeholder="Contraseña" /> <br/><br/>
+      <button type="submit">Iniciar sesión</button> <br/>
     </form>
   );
 };
 
 export default Login;
+
+

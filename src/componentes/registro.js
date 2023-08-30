@@ -20,7 +20,6 @@ function Registro() {
       return;
     }
 
-    // Aquí puedes realizar la lógica de registro si todas las validaciones pasan
     alert("Registro exitoso");
     setRegistroExitoso(true);
     navigate("/");
